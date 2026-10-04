@@ -15,8 +15,7 @@ int main() {
     // тестирование 1 задания
 
     arr.set(0, 999);
-    arr.set(100, 5);
-    arr.print();// должны быть ошибки
+    arr.set(100, 5);// должны быть ошибки
 
     arr.get(2);
     arr.get(100);// должна быть ошибка
@@ -30,6 +29,12 @@ int main() {
     arr.print();
     std::cout << "Copy: ";
     copy_arr.print();
+
+    // тестирование 3 задания
+    arr.push_back(53);
+    std::cout << "New array: ";
+    arr.print();
+    arr.push_back(800);// должна быть ошибка
 
 
     return 0;

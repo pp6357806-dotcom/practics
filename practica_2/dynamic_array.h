@@ -14,4 +14,5 @@ void print() const;
 
 void set(int index, int value);
 int get(int index) const;
+void push_back(int value);
 };

@@ -5,7 +5,10 @@ DynamicArray::DynamicArray(int size) : pointer(nullptr), size(size){
     if (size > 0) {
         pointer = new int[size]();
     }
-}DynamicArray::DynamicArray(const DynamicArray& other) : pointer(nullptr), size(other.size) {
+
+}
+
+DynamicArray::DynamicArray(const DynamicArray& other) : pointer(nullptr), size(other.size) {
     if (size > 0) {
         pointer = new int[size];
         for (size_t i = 0; i < size; ++i) {
@@ -13,6 +16,7 @@ DynamicArray::DynamicArray(int size) : pointer(nullptr), size(size){
         }
     }
 }
+
 DynamicArray::~DynamicArray(){
     delete[] pointer;
 }
@@ -46,4 +50,21 @@ int DynamicArray::get(int index) const{
         return 0;
     }
     return pointer[index];
+}
+
+void DynamicArray::push_back(int value){
+    if (-100 > value|| value > 100){
+        std::cout << "Value out of range " << std::endl;
+        return;
+    }
+    int* NewPointer = new int[size+1];
+    for (size_t i = 0; i < size; ++i) {
+        NewPointer[i] = pointer[i];
+    }
+    NewPointer[size] = value;
+
+    delete[] pointer;
+    pointer = NewPointer;
+    size += 1;
+
 }
