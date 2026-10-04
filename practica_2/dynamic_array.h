@@ -15,4 +15,6 @@ void print() const;
 void set(int index, int value);
 int get(int index) const;
 void push_back(int value);
+void add(const DynamicArray& other);
+void sub(const DynamicArray& other);
 };

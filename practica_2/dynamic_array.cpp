@@ -11,7 +11,7 @@ DynamicArray::DynamicArray(int size) : pointer(nullptr), size(size){
 DynamicArray::DynamicArray(const DynamicArray& other) : pointer(nullptr), size(other.size) {
     if (size > 0) {
         pointer = new int[size];
-        for (size_t i = 0; i < size; ++i) {
+        for (int i = 0; i < size; ++i) {
             pointer[i] = other.pointer[i];
         }
     }
@@ -58,7 +58,7 @@ void DynamicArray::push_back(int value){
         return;
     }
     int* NewPointer = new int[size+1];
-    for (size_t i = 0; i < size; ++i) {
+    for (int i = 0; i < size; ++i) {
         NewPointer[i] = pointer[i];
     }
     NewPointer[size] = value;
@@ -67,4 +67,26 @@ void DynamicArray::push_back(int value){
     pointer = NewPointer;
     size += 1;
 
+}
+void DynamicArray::add(const DynamicArray& other){
+    for (int i = 0; i < size; i++){
+        int cur = pointer[i];
+        if (i < other.size){
+            cur = pointer[i] + other.pointer[i];
+        }
+        if (-100 <= cur && cur <= 100){
+            pointer[i] = cur;
+        }
+    }
+}
+void DynamicArray::sub(const DynamicArray& other){
+    for (int i = 0; i < size; i++){
+        int cur = pointer[i];
+        if (i < other.size){
+            cur = pointer[i] - other.pointer[i];
+        }
+        if (-100 <= cur && cur <= 100){
+            pointer[i] = cur;
+        }
+    }
 }
