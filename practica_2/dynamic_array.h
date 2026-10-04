@@ -4,14 +4,14 @@
 class DynamicArray{
 private:
     int* pointer;
-    int val;
+    int size;
 public:
-DynamicArray(int value){
-}
+DynamicArray(int size);
+DynamicArray(const DynamicArray& other);
 ~DynamicArray();
 
 void print() const;
 
-void set(int index, int value) const;
-void get(int index, int value) const;
+void set(int index, int value);
+int get(int index) const;
 };

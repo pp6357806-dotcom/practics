@@ -1,9 +1,16 @@
 #include "dynamic_array.h"
 #include <iostream>
 
-DynamicArray::DynamicArray(int size) : pointer(0), val(size){
+DynamicArray::DynamicArray(int size) : pointer(nullptr), size(size){
     if (size > 0) {
-        pointer = new int[val]();
+        pointer = new int[size]();
+    }
+}DynamicArray::DynamicArray(const DynamicArray& other) : pointer(nullptr), size(other.size) {
+    if (size > 0) {
+        pointer = new int[size];
+        for (size_t i = 0; i < size; ++i) {
+            pointer[i] = other.pointer[i];
+        }
     }
 }
 DynamicArray::~DynamicArray(){
@@ -12,30 +19,31 @@ DynamicArray::~DynamicArray(){
 
 void DynamicArray::print() const{
     std::cout << "[";
-    for(int i = 0; i < val; i++){
+    for(int i = 0; i < size; i++){
         std::cout << pointer[i];
-        if (i != val){
-            std::cout << ",";
+        if (i != size-1){
+            std::cout << ", ";
         }
-        std::cout << "]";
     }
+    std::cout << "]" << std::endl;
 }
 
-void DynamicArray::set(int index, int value) const{
-    if (index >= value){
-        std::cout << "Индекс выходит за границу массива, предельное значение: " << value;
+void DynamicArray::set(int index, int value){
+    if (index >= size){
+        std::cout << "The index is out of the array bounds " << std::endl;
         return;
     }
     if (-100 > value|| value > 100){
-        std::cout << "Значение вне диапазона" << std::endl;
+        std::cout << "Value out of range " << std::endl;
         return;
     }
     pointer[index] = value;
 }
 
-void DynamicArray::get(int index, int value) const{
-    if (index >= value){
-        std::cout << "Индекс выходит за границу массива, предельное значение: " << value;
-        return;
+int DynamicArray::get(int index) const{
+    if (index >= size){
+        std::cout << "The index is out of the array bounds " << std::endl;
+        return 0;
     }
+    return pointer[index];
 }
