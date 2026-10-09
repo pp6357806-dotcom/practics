@@ -1,5 +1,6 @@
 #include "dynamic_array.h"
 #include <iostream>
+#include <string>
 
 DynamicArray::DynamicArray(int size) : pointer(nullptr), size(size){
     if (size > 0) {
@@ -34,28 +35,24 @@ void DynamicArray::print() const{
 
 void DynamicArray::set(int index, int value){
     if (index >= size){
-        std::cout << "The index is out of the array bounds " << std::endl;
-        return;
+        throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     if (-100 > value|| value > 100){
-        std::cout << "Value out of range " << std::endl;
-        return;
+        throw std::invalid_argument("the value of " + std::to_string(value) + " is out of range [-100, 100]");
     }
     pointer[index] = value;
 }
 
 int DynamicArray::get(int index) const{
     if (index >= size){
-        std::cout << "The index is out of the array bounds " << std::endl;
-        return 0;
+        throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     return pointer[index];
 }
 
 void DynamicArray::push_back(int value){
     if (-100 > value|| value > 100){
-        std::cout << "Value out of range " << std::endl;
-        return;
+        throw std::invalid_argument("the value of " + std::to_string(value) + " is out of range [-100, 100]");
     }
     int* NewPointer = new int[size+1];
     for (int i = 0; i < size; ++i) {
