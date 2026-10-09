@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+// я великолепен
+
 class DynamicArray{
 private:
     int* pointer;
