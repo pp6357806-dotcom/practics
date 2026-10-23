@@ -1,20 +1,23 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
+#include <type_traits>
 
-class DynamicArray{
+template <typename T>
+class DynamicArray {
 private:
-    int* pointer;
+    T* pointer;
     int size;
+
 public:
-DynamicArray(int size);
-DynamicArray(const DynamicArray& other);
-~DynamicArray();
+    DynamicArray(int size);
+    DynamicArray(const DynamicArray& other);
+    ~DynamicArray();
 
-void print() const;
-
-void set(int index, int value);
-int get(int index) const;
-void push_back(int value);
-void add(const DynamicArray& other);
-void sub(const DynamicArray& other);
+    void print() const;
+    void set(int index, const T& value);
+    T get(int index) const;
+    void push_back(const T& value);
+    void add(const DynamicArray& other);
+    void sub(const DynamicArray& other);
 };

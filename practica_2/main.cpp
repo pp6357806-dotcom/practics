@@ -1,14 +1,15 @@
 #include "dynamic_array.h"
 #include <iostream>
+#include <string>
 
 int main() {
-    try {
-        DynamicArray arr(5);
-    }
-    catch(std::bad_alloc& e){
-        std::cout << e.what() << std::endl;
-    }
-    DynamicArray arr(5);
+    // try {
+    //     DynamicArray<int> arr(5);
+    // }
+    // catch(std::bad_alloc& e){
+    //     std::cout << e.what() << std::endl;
+    // }
+    DynamicArray<int> arr(5);
     arr.print();
 
     arr.set(0, 1);
@@ -66,7 +67,7 @@ int main() {
 
     // тестирование 1.2 задания
     std::cout << "\n1.2 excercise\n" << std::endl;
-    DynamicArray copy_arr(arr);
+    DynamicArray<int> copy_arr(arr);
     try {
         copy_arr.set(0, 58);
     }
@@ -124,16 +125,41 @@ int main() {
     std::cout << "copy: ";
     copy_arr.print();
 
-    arr.add(copy_arr);
-    std::cout << "arr plus copy_arr: ";
-    arr.print();
+    try {
+        arr.add(copy_arr);
+        std::cout << "arr plus copy_arr: ";
+        arr.print();
+    } catch (const std::invalid_argument& e) {
+        std::cout << e.what() << std::endl;
+    }
 
-    copy_arr.add(copy_arr);
-    std::cout << "copy_arr plus copy_arr: ";
-    copy_arr.print();
-    copy_arr.sub(arr);
-    std::cout << "copy_arr minus arr: ";
-    copy_arr.print();
+    try {
+        copy_arr.add(copy_arr);
+        std::cout << "copy_arr plus copy_arr: ";
+        copy_arr.print();
+    } catch (const std::invalid_argument& e) {
+        std::cout << e.what() << std::endl;
+    }
+    
+    try {
+        copy_arr.sub(arr);
+        std::cout << "copy_arr minus arr: ";
+        copy_arr.print();
+    } catch (const std::invalid_argument& e) {
+        std::cout << e.what() << std::endl;
+    }
+
+    //тестирование 3.1
+    std::cout << "\n3.1 excercise\n" << std::endl;
+
+    DynamicArray<std::string> arr_new(5);
+
+    arr_new.set(0, std::string("apple"));
+    arr_new.set(1, std::string("pear"));
+    arr_new.set(2, std::string("lemon"));
+    arr_new.set(3, std::string("orange"));
+    arr_new.set(4, std::string("banana"));
+    arr_new.print();
 
     return 0;
 }
