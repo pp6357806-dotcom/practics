@@ -106,8 +106,22 @@ void DynamicArray<T>::sub(const DynamicArray& other){
         }
     }
 }
+template <typename T>
+std::ostream&operator << (std::ostream& os, const DynamicArray<T>& arr){
+    os << "[";
+    for(int i = 0; i < arr.size-1; i++){
+        os << arr.pointer[i] << ", ";
+    }
+    os << arr.pointer[arr.size-1] << "]";
+    return os;
+}
 
 template class DynamicArray<int>;
 template class DynamicArray<double>;
 template class DynamicArray<char>;
 template class DynamicArray<std::string>;
+
+template std::ostream& operator << (std::ostream& os, const DynamicArray<int>& arr);
+template std::ostream& operator << (std::ostream& os, const DynamicArray<double>& arr);
+template std::ostream& operator << (std::ostream& os, const DynamicArray<char>& arr);
+template std::ostream& operator << (std::ostream& os, const DynamicArray<std::string>& arr);

@@ -20,4 +20,7 @@ public:
     void push_back(const T& value);
     void add(const DynamicArray& other);
     void sub(const DynamicArray& other);
+
+    template <typename U>
+    friend std::ostream& operator << (std::ostream& os, const DynamicArray<U>& arr);
 };

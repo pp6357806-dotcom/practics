@@ -10,14 +10,14 @@ int main() {
     //     std::cout << e.what() << std::endl;
     // }
     DynamicArray<int> arr(5);
-    arr.print();
+    std::cout << arr << std::endl;
 
     arr.set(0, 1);
     arr.set(1, -2);
     arr.set(2, 3);
     arr.set(3, -4);
     arr.set(4, 5);
-    arr.print();
+    std::cout << arr << std::endl;
 
     // тестирование 1.1 задания
     std::cout << "\n1.1 excercise\n" << std::endl;
@@ -88,10 +88,8 @@ int main() {
     } catch(std::bad_alloc& e){
         std::cout << e.what() << std::endl;
     }
-    std::cout << "Original: ";
-    arr.print();
-    std::cout << "Copy: ";
-    copy_arr.print();
+    std::cout << "Original: " << arr;
+    std::cout << "Copy: " << copy_arr << std::endl;
 
     // тестирование 1.3 задания
     std::cout << "\n1.3 excercise\n" << std::endl;
@@ -105,8 +103,7 @@ int main() {
     } catch(std::bad_alloc& e){
         std::cout << e.what() << std::endl;
     }
-    std::cout << "New array: ";
-    arr.print();
+    std::cout << "New array: " << arr << std::endl;
     try {
         arr.push_back(800);// должна быть ошибка
     }
@@ -120,31 +117,26 @@ int main() {
 
     // тестирование 1.4 задания
     std::cout << "\n1.4 excercise\n" << std::endl;
-    std::cout << "arr: ";
-    arr.print();
-    std::cout << "copy: ";
-    copy_arr.print();
+    std::cout << "arr: " << arr;
+    std::cout << "copy: " << copy_arr << std::endl;
 
     try {
         arr.add(copy_arr);
-        std::cout << "arr plus copy_arr: ";
-        arr.print();
+        std::cout << "arr plus copy_arr: " << arr;
     } catch (const std::invalid_argument& e) {
         std::cout << e.what() << std::endl;
     }
 
     try {
         copy_arr.add(copy_arr);
-        std::cout << "copy_arr plus copy_arr: ";
-        copy_arr.print();
+        std::cout << "copy_arr plus copy_arr: " << copy_arr;
     } catch (const std::invalid_argument& e) {
         std::cout << e.what() << std::endl;
     }
     
     try {
         copy_arr.sub(arr);
-        std::cout << "copy_arr minus arr: ";
-        copy_arr.print();
+        std::cout << "copy_arr minus arr: "<< copy_arr << std::endl;
     } catch (const std::invalid_argument& e) {
         std::cout << e.what() << std::endl;
     }
@@ -159,7 +151,7 @@ int main() {
     arr_new.set(2, std::string("lemon"));
     arr_new.set(3, std::string("orange"));
     arr_new.set(4, std::string("banana"));
-    arr_new.print();
+    std::cout << "string test: " << arr_new << std::endl;
 
     return 0;
 }
