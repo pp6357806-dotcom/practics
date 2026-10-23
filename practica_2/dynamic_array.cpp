@@ -25,18 +25,6 @@ DynamicArray<T>::~DynamicArray(){
 }
 
 template <typename T>
-void DynamicArray<T>::print() const{
-    std::cout << "[";
-    for(int i = 0; i < size; i++){
-        std::cout << pointer[i];
-        if (i != size-1){
-            std::cout << ", ";
-        }
-    }
-    std::cout << "]" << std::endl;
-}
-
-template <typename T>
 void DynamicArray<T>::set(int index, const T& value){
     if (index >= size){
         throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
@@ -94,7 +82,7 @@ void DynamicArray<T>::add(const DynamicArray& other){
 
 template <typename T>
 void DynamicArray<T>::sub(const DynamicArray& other){
-    if constexpr (std::is_integral_v<T>) {
+    if constexpr (std::is_arithmetic_v<T>) {
         for (int i = 0; i < size; i++){
             T cur = pointer[i];
             if (i < other.size){
@@ -106,6 +94,7 @@ void DynamicArray<T>::sub(const DynamicArray& other){
         }
     }
 }
+
 template <typename T>
 std::ostream&operator << (std::ostream& os, const DynamicArray<T>& arr){
     os << "[";
@@ -114,6 +103,23 @@ std::ostream&operator << (std::ostream& os, const DynamicArray<T>& arr){
     }
     os << arr.pointer[arr.size-1] << "]";
     return os;
+}
+
+
+template <typename T>
+double distance(const DynamicArray<T>& arr1, const DynamicArray<T>& arr2){
+    if constexpr (!std::is_arithmetic_v<T>) {
+        throw std::bad_typeid("This type is not supported");
+    }
+    if (arr1.size != arr2.size){
+        throw std::invalid_argument("The sizes of the arrays are different");
+    }
+    double sum = 0.0;
+    for (int i = 0; i < arr1.size; i++){
+        double diff = static_cast<double>(arr1.pointer[i]) - static_cast<double>(arr2.pointer[i]);
+        sum += diff*diff;
+    }
+    return std::sqrt(sum);
 }
 
 template class DynamicArray<int>;
@@ -125,3 +131,6 @@ template std::ostream& operator << (std::ostream& os, const DynamicArray<int>& a
 template std::ostream& operator << (std::ostream& os, const DynamicArray<double>& arr);
 template std::ostream& operator << (std::ostream& os, const DynamicArray<char>& arr);
 template std::ostream& operator << (std::ostream& os, const DynamicArray<std::string>& arr);
+
+template double distance(const DynamicArray<int>& arr1, const DynamicArray<int>& arr2);
+template double distance(const DynamicArray<double>& arr1, const DynamicArray<double>& arr2);

@@ -88,7 +88,7 @@ int main() {
     } catch(std::bad_alloc& e){
         std::cout << e.what() << std::endl;
     }
-    std::cout << "Original: " << arr;
+    std::cout << "Original: " << arr << std::endl;
     std::cout << "Copy: " << copy_arr << std::endl;
 
     // тестирование 1.3 задания
@@ -152,6 +152,29 @@ int main() {
     arr_new.set(3, std::string("orange"));
     arr_new.set(4, std::string("banana"));
     std::cout << "string test: " << arr_new << std::endl;
+
+    //тестирование 3.3
+    std::cout << "\n3.3 excercise\n" << std::endl;
+    DynamicArray<int> arr1(3), arr2(3);
+        arr1.set(0, 1); arr1.set(1, 2); arr1.set(2, 3);
+        arr2.set(0, 4); arr2.set(1, 6); arr2.set(2, 9);
+    try{
+        double ans = distance(arr1, arr2);
+        std::cout << "" << ans << std::endl;
+    } catch(const std::bad_typeid& e){
+        std::cout << e.what() << std::endl;
+    } catch(const std::invalid_argument& e){
+        std::cout << e.what() << std::endl;
+    }
+
+    try{
+        double ans = distance(arr, arr2);
+        std::cout << "" << ans << std::endl;
+    } catch(const std::bad_typeid& e){
+        std::cout << e.what() << std::endl;
+    } catch(const std::invalid_argument& e){
+        std::cout << e.what() << std::endl; // ошибка выскочит
+    }
 
     return 0;
 }
