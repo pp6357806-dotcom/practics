@@ -222,6 +222,13 @@ int main() {
         std::cout << e.what() << std::endl; // ошибка выскочит
     }
 
+    // тестирование 4.4
+    std::cout << "\n4.4 excercise\n" << std::endl;
+    for (const auto& x : arr_4){
+        std::cout << x << " ";
+    }
+    std::cout << std::endl;
+
 
     return 0;
 }
