@@ -30,6 +30,7 @@ public:
     void add(const DynamicArray& other);
     void sub(const DynamicArray& other);
 
+    T& operator[](int index);
     friend std::ostream& operator<<<T>(std::ostream& os, const DynamicArray<T>& arr);
     friend double distance<T>(const DynamicArray<T>& arr1, const DynamicArray<T>& arr2);
 

@@ -26,7 +26,7 @@ DynamicArray<T>::~DynamicArray(){
 
 template <typename T>
 void DynamicArray<T>::set(int index, const T& value){
-    if (index >= size){
+    if (index >= size || index < 0){
         throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     if constexpr (std::is_integral_v<T>) {
@@ -39,7 +39,7 @@ void DynamicArray<T>::set(int index, const T& value){
 
 template <typename T>
 T DynamicArray<T>::get(int index) const{
-    if (index >= size){
+    if (index >= size || index < 0){
         throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     return pointer[index];
@@ -93,6 +93,13 @@ void DynamicArray<T>::sub(const DynamicArray& other){
             }
         }
     }
+}
+template <typename T>
+T& DynamicArray<T>::operator[](int index){
+    if (index >= size || index < 0){
+        throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
+    }
+    return pointer[index];
 }
 
 template <typename T>
