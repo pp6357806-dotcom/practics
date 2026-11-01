@@ -208,6 +208,20 @@ int main() {
     std::cout << "arr_4 == arr_5: " << (arr_4 == arr_5) << std::endl;
     std::cout << "arr != arr_4: " << (arr != arr_4) << std::endl;
 
+    // тестирование 4.3
+    std::cout << "\n4.3 excercise\n" << std::endl;
+    arr_4 += arr_5;
+    std::cout << "arr_4 + arr_5: " << arr_4 << std::endl;
+    arr_4 -= arr_5;
+    std::cout << "arr_4 - arr_5: " << arr_4 << std::endl;
+    arr_4 += 20;
+    std::cout << "arr_4 + 20" << arr_4 << std::endl;
+    try{
+        arr_4 += 100;
+    } catch(const std::invalid_argument& e){
+        std::cout << e.what() << std::endl; // ошибка выскочит
+    }
+
 
     return 0;
 }
