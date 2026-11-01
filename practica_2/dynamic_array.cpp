@@ -1,6 +1,7 @@
 #include "dynamic_array.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 template <typename T>
 DynamicArray<T>::DynamicArray(int size) : pointer(nullptr), size(size) {
@@ -26,7 +27,7 @@ DynamicArray<T>::~DynamicArray(){
 
 template <typename T>
 void DynamicArray<T>::set(int index, const T& value){
-    if (index >= size){
+    if (index >= size || index < 0){
         throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     if constexpr (std::is_integral_v<T>) {
@@ -39,7 +40,7 @@ void DynamicArray<T>::set(int index, const T& value){
 
 template <typename T>
 T DynamicArray<T>::get(int index) const{
-    if (index >= size){
+    if (index >= size || index < 0){
         throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
     }
     return pointer[index];
@@ -93,6 +94,93 @@ void DynamicArray<T>::sub(const DynamicArray& other){
             }
         }
     }
+}
+template <typename T>
+T& DynamicArray<T>::operator[](int index){
+    if (index >= size || index < 0){
+        throw std::out_of_range("the index " + std::to_string(index) + " is out of the array bounds");
+    }
+    return pointer[index];
+}
+
+template <typename T>
+bool DynamicArray<T>::operator==(const DynamicArray<T>& arr) const{
+    if (size != arr.size){
+        return false;
+    }
+    for (int i = 0; i < size; i++){
+        if (pointer[i] != arr.pointer[i]){
+            return false;
+        }
+    }
+  return  true;  
+}
+
+template <typename T>
+bool DynamicArray<T>::operator!=(const DynamicArray<T>& arr) const{
+    return !(*this == arr);
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator+=(const DynamicArray<T>& arr){
+    int min_size = std::min(size, arr.size);
+    for(int i = 0; i < min_size; i++){
+        T cur = pointer[i] + arr.pointer[i];
+        if constexpr (std::is_integral_v<T>) {
+            if (cur > 100 || cur < -100) {
+                throw std::invalid_argument("Value out of range in sub");
+            }
+        }
+        pointer[i] = cur;
+    }
+    return *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator-=(const DynamicArray<T>& arr){
+    if constexpr (std::is_integral_v<T>){
+    int min_size = std::min(size, arr.size);
+    for(int i = 0; i < min_size; i++){
+        T cur = pointer[i] - arr.pointer[i];
+        if constexpr (std::is_integral_v<T>) {
+            if (cur > 100 || cur < -100) {
+                throw std::invalid_argument("Value out of range in sub");
+            }
+        }
+    pointer[i] = cur;
+    }
+    }
+    return *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator+=(const T& var){
+    for(int i = 0; i < size; i++){
+        T cur = pointer[i] + var;
+        if constexpr (std::is_integral_v<T>) {
+            if (cur > 100 || cur < -100) {
+                throw std::invalid_argument("Value out of range in sub");
+            }
+        }
+        pointer[i] = cur;
+    }
+    return *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator-=(const T& var){
+    if constexpr (std::is_integral_v<T>){
+    for(int i = 0; i < size; i++){
+        T cur = pointer[i] - var;
+        if constexpr (std::is_integral_v<T>) {
+            if (cur > 100 || cur < -100) {
+                throw std::invalid_argument("Value out of range in sub");
+            }
+        }
+        pointer[i] = cur;
+    }
+    }
+    return *this;
 }
 
 template <typename T>
