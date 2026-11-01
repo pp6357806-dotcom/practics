@@ -176,5 +176,38 @@ int main() {
         std::cout << e.what() << std::endl; // ошибка выскочит
     }
 
+    // тестирование 4.1
+    std::cout << "\n4.1 excercise\n" << std::endl;
+    try{
+        arr[0] = 10;
+        std::cout << arr[0] << std::endl;
+    } catch(std::out_of_range& e){
+        std::cout << e.what() << std::endl;
+    }
+    try{
+        arr[909] = 10;
+    } catch(std::out_of_range& e){
+        std::cout << e.what() << std::endl;
+    }
+
+    // тестирование 4.2
+    std::cout << "\n4.2 excercise\n" << std::endl;
+    DynamicArray<int> arr_4(5);
+    DynamicArray<int> arr_5(5);
+    arr_4[0] = 1;
+    arr_4[1] = 2;
+    arr_4[2] = 3;
+    arr_4[3] = 4;
+    arr_4[4] = 5;
+
+    arr_5[0] = 1;
+    arr_5[1] = 2;
+    arr_5[2] = 3;
+    arr_5[3] = 4;
+    arr_5[4] = 5;
+    std::cout << "arr_4 == arr_5: " << (arr_4 == arr_5) << std::endl;
+    std::cout << "arr != arr_4: " << (arr != arr_4) << std::endl;
+
+
     return 0;
 }

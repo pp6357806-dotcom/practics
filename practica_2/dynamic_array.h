@@ -31,6 +31,8 @@ public:
     void sub(const DynamicArray& other);
 
     T& operator[](int index);
+    bool operator==(const DynamicArray<T>& arr) const;
+    bool operator!=(const DynamicArray<T>& arr) const;
     friend std::ostream& operator<<<T>(std::ostream& os, const DynamicArray<T>& arr);
     friend double distance<T>(const DynamicArray<T>& arr1, const DynamicArray<T>& arr2);
 

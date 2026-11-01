@@ -103,6 +103,24 @@ T& DynamicArray<T>::operator[](int index){
 }
 
 template <typename T>
+bool DynamicArray<T>::operator==(const DynamicArray<T>& arr) const{
+    if (size != arr.size){
+        return false;
+    }
+    for (int i = 0; i < size; i++){
+        if (pointer[i] != arr.pointer[i]){
+            return false;
+        }
+    }
+  return  true;  
+}
+
+template <typename T>
+bool DynamicArray<T>::operator!=(const DynamicArray<T>& arr) const{
+    return !(*this == arr);
+}
+
+template <typename T>
 std::ostream&operator << (std::ostream& os, const DynamicArray<T>& arr){
     os << "[";
     for(int i = 0; i < arr.size-1; i++){
