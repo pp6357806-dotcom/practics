@@ -37,12 +37,12 @@ public:
     DynamicArray& operator-=(const DynamicArray<T>& arr);
     DynamicArray& operator+=(const T& var);
     DynamicArray& operator-=(const T& var);
+    DynamicArray& operator=(const DynamicArray<T>& arr);
 
     T* begin(){return pointer;}
     T* end(){return pointer+size;}
     const T* begin() const {return pointer;}
     const T* end() const {return pointer+size;}
-
 
     friend std::ostream& operator<<<T>(std::ostream& os, const DynamicArray<T>& arr);
     friend double distance<T>(const DynamicArray<T>& arr1, const DynamicArray<T>& arr2);

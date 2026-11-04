@@ -184,6 +184,18 @@ DynamicArray<T>& DynamicArray<T>::operator-=(const T& var){
 }
 
 template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T>& arr){
+    if (this == &arr) return *this;
+    delete[] pointer;
+    size = arr.size;
+    pointer = new T[arr.size];
+    for (int i = 0; i < size; ++i) {
+        pointer[i] = arr.pointer[i];
+    }
+    return  *this;
+}
+
+template <typename T>
 std::ostream&operator << (std::ostream& os, const DynamicArray<T>& arr){
     os << "[";
     for(int i = 0; i < arr.size-1; i++){

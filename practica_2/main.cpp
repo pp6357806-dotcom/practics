@@ -229,6 +229,14 @@ int main() {
     }
     std::cout << std::endl;
 
+    // тестирование 5.1
+    std::cout << "\n4.4 excercise\n" << std::endl;
+    std::cout << "arr_4: " << arr_4 << std::endl;
+    arr_4 = arr_5;
+    arr_4 = arr_4;
+    std::cout << "arr_4: " << arr_4 << std::endl;
+    
+
 
     return 0;
 }
