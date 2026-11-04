@@ -242,5 +242,9 @@ int main() {
     DynamicArray<int> mov = std::move(arr_4);
     std::cout << "move: " << mov << std::endl;
 
+    // тестирование 5.3
+    std::cout << "\n5.3 excercise\n" << std::endl;
+    arr_5 = std::move(mov);
+    std::cout << "arr_5:" << arr_5 << std::endl;
     return 0;
 }

@@ -39,6 +39,7 @@ public:
     DynamicArray& operator+=(const T& var);
     DynamicArray& operator-=(const T& var);
     DynamicArray& operator=(const DynamicArray<T>& arr);
+    DynamicArray& operator=(DynamicArray&& arr);
 
     T* begin(){return pointer;}
     T* end(){return pointer+size;}
