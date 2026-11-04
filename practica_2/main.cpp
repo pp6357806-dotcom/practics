@@ -230,13 +230,17 @@ int main() {
     std::cout << std::endl;
 
     // тестирование 5.1
-    std::cout << "\n4.4 excercise\n" << std::endl;
-    std::cout << "arr_4: " << arr_4 << std::endl;
+    std::cout << "\n5.1 excercise\n" << std::endl;
+    std::cout << "old arr_4: " << arr_4 << std::endl;
     arr_4 = arr_5;
     arr_4 = arr_4;
-    std::cout << "arr_4: " << arr_4 << std::endl;
-    
+    std::cout << "new arr_4: " << arr_4 << std::endl;
 
+    // тестирование 5.2
+    std::cout << "\n5.2 excercise\n" << std::endl;
+    arr_4 += 20;
+    DynamicArray<int> mov = std::move(arr_4);
+    std::cout << "move: " << mov << std::endl;
 
     return 0;
 }

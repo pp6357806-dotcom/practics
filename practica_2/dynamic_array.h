@@ -21,6 +21,7 @@ private:
 public:
     DynamicArray(int size);
     DynamicArray(const DynamicArray& other);
+    DynamicArray(DynamicArray&& other);
     ~DynamicArray();
 
     void print() const;

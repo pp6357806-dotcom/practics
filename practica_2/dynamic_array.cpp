@@ -21,6 +21,16 @@ DynamicArray<T>::DynamicArray(const DynamicArray& other) : pointer(nullptr), siz
 }
 
 template <typename T>
+DynamicArray<T>::DynamicArray(DynamicArray&& arr){
+    pointer = arr.pointer;
+    size = arr.size;
+    arr.pointer = nullptr;
+    arr.size = 0;
+
+}
+
+
+template <typename T>
 DynamicArray<T>::~DynamicArray(){
     delete[] pointer;
 }
