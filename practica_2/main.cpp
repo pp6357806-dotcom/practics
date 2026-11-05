@@ -229,6 +229,36 @@ int main() {
     }
     std::cout << std::endl;
 
+    // тестирование 5.1
+    std::cout << "\n5.1 excercise\n" << std::endl;
+    std::cout << "old arr_4: " << arr_4 << std::endl;
+    arr_4 = arr_5;
+    arr_4 = arr_4;
+    std::cout << "new arr_4: " << arr_4 << std::endl;
+
+    // тестирование 5.2
+    std::cout << "\n5.2 excercise\n" << std::endl;
+    arr_4 += 20;
+    DynamicArray<int> mov = std::move(arr_4);
+    std::cout << "move: " << mov << std::endl;
+
+    // тестирование 5.3
+    std::cout << "\n5.3 excercise\n" << std::endl;
+    arr_5 = std::move(mov);
+    std::cout << "arr_5:" << arr_5 << std::endl;
+
+    // тестирование 5.4
+    std::cout << "\n5.4 excercise\n" << std::endl;
+    DynamicArray<int> new_array(3);
+    new_array[0] = 1;
+    new_array[1] = 2;
+    new_array[2] = 3;
+    DynamicArray<int> array_copy = new_array;
+    std::cout << "array before copy: " << new_array << std::endl;
+    std::cout << "array after copy: " << array_copy << std::endl;
+
+    DynamicArray<int> array_copy_move = array_copy; 
+    std::cout << "array after move: " << array_copy_move << std::endl;
 
     return 0;
 }

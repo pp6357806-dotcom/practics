@@ -21,6 +21,16 @@ DynamicArray<T>::DynamicArray(const DynamicArray& other) : pointer(nullptr), siz
 }
 
 template <typename T>
+DynamicArray<T>::DynamicArray(DynamicArray&& arr){
+    pointer = arr.pointer;
+    size = arr.size;
+    arr.pointer = nullptr;
+    arr.size = 0;
+
+}
+
+
+template <typename T>
 DynamicArray<T>::~DynamicArray(){
     delete[] pointer;
 }
@@ -180,6 +190,29 @@ DynamicArray<T>& DynamicArray<T>::operator-=(const T& var){
         pointer[i] = cur;
     }
     }
+    return *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray<T>& arr){
+    if (this == &arr) return *this;
+    delete[] pointer;
+    size = arr.size;
+    pointer = new T[arr.size];
+    for (int i = 0; i < size; ++i) {
+        pointer[i] = arr.pointer[i];
+    }
+    return  *this;
+}
+
+template <typename T>
+DynamicArray<T>& DynamicArray<T>::operator=(DynamicArray&& arr){
+    if (this == &arr) return *this;
+    delete[] pointer;
+    pointer = arr.pointer;
+    size = arr.size;
+    arr.pointer = nullptr;
+    arr.size = 0;
     return *this;
 }
 
